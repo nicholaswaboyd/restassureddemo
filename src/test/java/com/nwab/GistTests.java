@@ -1,7 +1,5 @@
 package com.nwab;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -45,7 +43,7 @@ public class GistTests
         fileName = "myfile.txt";
         fileContent = "The is a test Gist";
 
-        //Send request
+        //Given I sent a request to create a Gist
         Response response = RestAssured.given()
                 .header("Authorization", "Bearer " + token)
                 .header("Accept", "application/vnd.github+json")
@@ -56,6 +54,7 @@ public class GistTests
 
         gistID = response.jsonPath().getString("id");
 
+        //Then the API returns a 201 code and the Gist is created
         Assert.assertEquals(201, response.getStatusCode());
         Assert.assertTrue(response.getBody().asString().contains(description));
 
@@ -64,7 +63,32 @@ public class GistTests
     @Test
     public void listAllGistsForUser()
     {
-        assertTrue( true );
+        //Set variable strings
+        description = "Testing Gist Creation API";
+        fileName = "myfile.txt";
+        fileContent = "The is a test Gist";
+
+        //Given I have created a Gist
+        Response creationResponse = RestAssured.given()
+                .header("Authorization", "Bearer " + token)
+                .header("Accept", "application/vnd.github+json")
+                .header("X-GitHub-Api-Version", API_VERSION)
+                .contentType(ContentType.JSON)
+                .body("{\"description\":\"" + description + "\",\"public\":" + isPublic + ",\"files\":{\"" + fileName + "\":{\"content\":\"" + fileContent + "\"}}}")
+                .post(baseUri);
+
+        gistID = creationResponse.jsonPath().getString("id");
+
+        //When I query all Gists for a user
+        Response response = RestAssured.given()
+                .header("Authorization", "Bearer " + token)
+                .header("Accept", "application/vnd.github+json")
+                .header("X-GitHub-Api-Version", API_VERSION)
+                .contentType(ContentType.JSON)
+                .get(baseUri);
+        
+        //Then the ID for the created Gist is present in the response
+        Assert.assertTrue(response.getBody().asString().contains(gistID));
         
     }
 
