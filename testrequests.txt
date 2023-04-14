@@ -22,4 +22,4 @@ curl -L \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: Bearer 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"\
   -H "X-GitHub-Api-Version: 2022-11-28" \
-  https://api.github.com/gists/e390bbac6d4c2eb9cbae020a64b47672
+  https://api.github.com/gists/a4b77f89e8b82df8447ed713db4554ff
