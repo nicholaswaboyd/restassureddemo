@@ -1,9 +1,9 @@
-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
+TOKEN
 
 List Gists for user
 curl -L \
   -H "Accept: application/vnd.github+json" \
-  -H "Authorization: Bearer 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"\
+  -H "Authorization: Bearer TOKEN"\
   -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/gists
 
@@ -11,7 +11,7 @@ Create Gist
 curl -L \
   -X POST \
   -H "Accept: application/vnd.github+json" \
-  -H "Authorization: Bearer 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"\
+  -H "Authorization: Bearer TOKEN"\
   -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/gists \
   -d '{"description":"Testing Gist Creation API","public":false,"files":{"myfile.txt":{"content":"The is a test Gist"}}}'
@@ -20,7 +20,7 @@ Delete Gist
 curl -L \
   -X DELETE \
   -H "Accept: application/vnd.github+json" \
-  -H "Authorization: Bearer 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"\
+  -H "Authorization: Bearer TOKEN"\
   -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/gists/537b72a124d0c9eeb81a2d3d8b9f835c
 
@@ -28,7 +28,7 @@ Create Gist with Multiple files
 curl -L \
   -X POST \
   -H "Accept: application/vnd.github+json" \
-  -H "Authorization: Bearer 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"\
+  -H "Authorization: Bearer TOKEN"\
   -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/gists \
   -d '{"description":"Testing Gist Creation API","public":false,"files":{"myFile1.txt":{"content":"The is a 1 test Gist"},"myFile2.txt":{"content":"The is a 2 test Gist"}}}'
@@ -37,7 +37,7 @@ Update Gist files
 curl -L \
   -X PATCH \
   -H "Accept: application/vnd.github+json" \
-  -H "Authorization: Bearer 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"\
+  -H "Authorization: Bearer TOKEN"\
   -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/gists/3b9fa946e6676899b32a1a1de44b19cc \
   -d '{"files":{"myFile1.txt":{"content":"Text succesfully updated."},"myFile2.txt":null}}'
